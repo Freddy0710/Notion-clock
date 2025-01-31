@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reloj Widget para Notion</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: transparent;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .reloj-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .tiempo {
+            font-size: 3.5em;
+            color: #2F3437;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .fecha {
+            font-size: 1.2em;
+            color: #2F3437;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="reloj-container">
+        <div class="tiempo" id="tiempo">00:00:00</div>
+        <div class="fecha" id="fecha">Lunes, 1 de Enero</div>
+    </div>
+
+    <script>
+        function actualizarReloj() {
+            const ahora = new Date();
+            
+            // Actualizar tiempo
+            const tiempo = ahora.toLocaleTimeString('es-ES');
+            document.getElementById('tiempo').textContent = tiempo;
+            
+            // Actualizar fecha
+            const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const fecha = ahora.toLocaleDateString('es-ES', opciones);
+            document.getElementById('fecha').textContent = fecha;
+        }
+
+        // Actualizar cada segundo
+        setInterval(actualizarReloj, 1000);
+        actualizarReloj(); // Llamada inicial
+    </script>
+</body>
+</html>
